@@ -1,10 +1,10 @@
-name: Sync greasemonkey to (adamlui/userscripts/chatgpt || adamlui/chatgpt-userscripts) /chatgpt-auto-refresh
+name: Sync README.md to (greasemonkey) && (adamlui/userscripts/chatgpt || adamlui/chatgpt-userscripts) /chatgpt-auto-refresh
 
 on:
   push:
     branches: [ master, main ]
     paths:
-      - 'greasemonkey/**'
+      - 'README.md'
 
 jobs:
   build:
@@ -33,8 +33,8 @@ jobs:
           repository: adamlui/chatgpt-userscripts
           path: adamlui/chatgpt-userscripts
 
-      - name: Copy greasemonkey/README.md to root directory
-        run: cp -f ${{ github.workspace }}/adamlui/chatgpt-auto-refresh/greasemonkey/README.md ${{ github.workspace }}/adamlui/chatgpt-auto-refresh/README.md
+      - name: Copy README.md to greasemonkey directory
+        run: cp -f ${{ github.workspace }}/adamlui/chatgpt-auto-refresh/README.md ${{ github.workspace }}/adamlui/chatgpt-auto-refresh/greasemonkey/README.md
 
       - name: Sync adamlui/chatgpt-auto-refresh/greasemonkey to adamlui/userscripts/chatgpt/chatgpt-auto-refresh
         run: rsync -av --delete ${{ github.workspace }}/adamlui/chatgpt-auto-refresh/greasemonkey/ ${{ github.workspace }}/adamlui/userscripts/chatgpt/chatgpt-auto-refresh/
@@ -48,8 +48,8 @@ jobs:
           push_options: '--force'
           add_options: '--all'
           commit_user_email: auto-sync@adamlui.com
-          commit_message: '${{ github.event.head_commit.message }} ↞ [auto-sync from `adamlui/chatgpt-auto-refresh/greasemonkey`]'
-          file_pattern: '*'
+          commit_message: '${{ github.event.head_commit.message }} ↞ [auto-sync from `adamlui/chatgpt-auto-refresh`]'
+          file_pattern: 'greasemonkey/*'
           repository: adamlui/chatgpt-auto-refresh
 
       - name: Push to adamlui/userscripts
