@@ -42,7 +42,7 @@ jobs:
           fi
 
       - name: Sync / to adamlui/chatgpt-apps/chatgpt-auto-refresh/
-        run: rsync -avh --exclude={'.git','.github'} ${{ github.workspace }}/adamlui/chatgpt-auto-refresh/ ${{ github.workspace }}/adamlui/chatgpt-apps/chatgpt-auto-refresh/
+        run: rsync -avh --delete --exclude={'.git','.github'} ${{ github.workspace }}/adamlui/chatgpt-auto-refresh/ ${{ github.workspace }}/adamlui/chatgpt-apps/chatgpt-auto-refresh/
 
       - name: Sync /greasemonkey/ to adamlui/userscripts/chatgpt/chatgpt-auto-refresh/
         run: rsync -avh --delete ${{ github.workspace }}/adamlui/chatgpt-auto-refresh/greasemonkey/ ${{ github.workspace }}/adamlui/userscripts/chatgpt/chatgpt-auto-refresh/
