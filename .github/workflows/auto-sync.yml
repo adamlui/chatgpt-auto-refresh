@@ -37,14 +37,13 @@ jobs:
       - name: Sync docs between root & /greasemonkey
         run: |
           shopt -s globstar
-          for file in "${{ github.workspace }}/adamlui/chatgpt-auto-refresh/docs/"**/*.md; do
-            relative_path=${file#"${{ github.workspace }}/adamlui/chatgpt-auto-refresh/docs/"}
+          cd ${{ github.workspace }}/adamlui/chatgpt-auto-refresh
+          for file in docs/**/*.md; do
+            relative_path=${file#"docs/"}
             root_doc="${{ github.workspace }}/adamlui/chatgpt-auto-refresh/docs/$relative_path"
             gm_doc="${{ github.workspace }}/adamlui/chatgpt-auto-refresh/greasemonkey/docs/$relative_path"
-
             root_modified=$(git log -1 --format="%ct" -- "$root_doc")
             gm_modified=$(git log -1 --format="%ct" -- "$gm_doc")
-
             if (( root_modified > gm_modified )); then
               cp -f "$root_doc" "$gm_doc"
             else
