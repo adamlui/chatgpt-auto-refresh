@@ -38,13 +38,27 @@ jobs:
           shopt -s globstar
           for file in "${{ github.workspace }}/adamlui/chatgpt-auto-refresh/docs/"**/*.md; do
             relative_path=${file#"${{ github.workspace }}/adamlui/chatgpt-auto-refresh/docs/"}
-            echo "Relative Path: $relative_path"
-            if [[ $(git diff --name-only "${{ github.workspace }}/adamlui/chatgpt-auto-refresh/docs/$relative_path") ]]; then
-              cp -f "${{ github.workspace }}/adamlui/chatgpt-auto-refresh/docs/$relative_path" "${{ github.workspace }}/adamlui/chatgpt-auto-refresh/greasemonkey/docs/$relative_path"
-            elif [[ $(git diff --name-only "${{ github.workspace }}/adamlui/chatgpt-auto-refresh/greasemonkey/docs/$relative_path") ]]; then
-              cp -f "${{ github.workspace }}/adamlui/chatgpt-auto-refresh/greasemonkey/docs/$relative_path" "${{ github.workspace }}/adamlui/chatgpt-auto-refresh/docs/$relative_path"
+            root_file="${{ github.workspace }}/adamlui/chatgpt-auto-refresh/docs/$relative_path"
+            gm_file="${{ github.workspace }}/adamlui/chatgpt-auto-refresh/greasemonkey/docs/$relative_path"
+
+            git diff --quiet "$root_file" "$gm_file"
+            result=$?
+
+            if (( result != 0 )); then
+              git log -1 --format="%ct" -- "$root_file" > root_modified.txt
+              git log -1 --format="%ct" -- "$gm_file" > gm_modified.txt
+
+              root_modified=$(cat root_modified.txt)
+              gm_modified=$(cat gm_modified.txt)
+
+              if (( root_modified > gm_modified )); then
+                cp -f "$root_file" "$gm_file"
+              else
+                cp -f "$gm_file" "$root_file"
+              fi
             fi
           done
+
 
       - name: Sync / to adamlui/chatgpt-apps/chatgpt-auto-refresh/
         run: rsync -avhr --delete --exclude={'.*','package*json'} ${{ github.workspace }}/adamlui/chatgpt-auto-refresh/ ${{ github.workspace }}/adamlui/chatgpt-apps/chatgpt-auto-refresh/
