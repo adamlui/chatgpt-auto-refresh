@@ -1,4 +1,4 @@
-name: Sync greasemonkey/utils/translate-en-messages.py to adamlui/python-utils/translate-messages/translate-en-messages.py
+name: Sync greasemonkey/utils/* to source repos
 
 on:
   push:
