@@ -1,4 +1,4 @@
-name: Sync greasemonkey/utils/* to source repos
+name: Sync greasemonkey/utils to adamlui/python-utils
 
 on:
   push:
