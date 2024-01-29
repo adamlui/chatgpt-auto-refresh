@@ -39,16 +39,13 @@ jobs:
           shopt -s globstar
           cd ${{ github.workspace }}/adamlui/chatgpt-auto-refresh
           for file in docs/**/*.md; do
-            relative_path=${file#"docs/"}
+            relative_path=${ file#"docs/" }
             root_doc="${{ github.workspace }}/adamlui/chatgpt-auto-refresh/docs/$relative_path"
             gm_doc="${{ github.workspace }}/adamlui/chatgpt-auto-refresh/greasemonkey/docs/$relative_path"
-            root_modified=$(git log -1 --format="%ct" -- "$root_doc")
-            gm_modified=$(git log -1 --format="%ct" -- "$gm_doc")
-            if (( root_modified > gm_modified )); then
-              cp -f "$root_doc" "$gm_doc"
-            else
-              cp -f "$gm_doc" "$root_doc"
-            fi
+            root_modified=$( git log -1 --format="%ct" -- "$root_doc" )
+            gm_modified=$( git log -1 --format="%ct" -- "$gm_doc" )
+            if (( root_modified > gm_modified )) ; then cp -f "$root_doc" "$gm_doc"
+            else cp -f "$gm_doc" "$root_doc" ; fi
           done
 
       - name: Sync / to adamlui/chatgpt-apps/chatgpt-auto-refresh/
