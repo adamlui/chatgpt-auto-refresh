@@ -1,5 +1,5 @@
 module.exports = {
-    'extends': ['eslint:recommended', 'plugin:json-schema-validator/recommended', 'plugin:yml/standard'],
+    'extends': ['eslint:recommended'],
     'ignorePatterns': ['!/.github'],
     'rules': {
         'indent': 'off', 'no-unexpected-multiline': 'off', // allow whitespace anywhere
@@ -14,14 +14,14 @@ module.exports = {
     'globals': { 'chatgpt': 'readonly' },
     'parserOptions': { 'ecmaVersion': 2022, 'sourceType': 'script' },
     'overrides': [
-        {
-            'files': ['**/*.user.js'],
-            'extends': ['plugin:userscripts/recommended'],
+        { 'files': ['**/*.json'], 'extends': ['plugin:json-schema-validator/recommended'] },
+        { 'files': ['**/*.user.js'], 'extends': ['plugin:userscripts/recommended'],
             'rules': {
                 'userscripts/use-homepage-and-url': 'off',
                 'userscripts/align-attributes': ['error', 3]
             }
-        }
+        },
+        { 'files': ['**/*.yml'], 'extends': ['plugin:yml/standard'] }
     ],
     'env': { 'browser': true, 'node': true, 'es6': true, 'greasemonkey': true }
 };
