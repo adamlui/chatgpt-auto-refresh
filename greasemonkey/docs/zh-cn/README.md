@@ -23,7 +23,7 @@
 
 ### 通过后台请求保持 ChatGPT 会话新鲜，以消除网络错误 + Cloudflare 检查。
 
-<a href="https://greasyfork.chatgptautorefresh.com"><img height=42 src="https://media.chatgptautorefresh.com/images/buttons/greasy-fork/install-button.svg"></a><a href="#-如何安装"><img height=42 title="如何安装" src="https://media.chatgptautorefresh.com/images/buttons/greasy-fork/help-button.svg"></a>
+<a href="https://greasyfork.chatgptautorefresh.com"><img height=45 src="https://media.chatgptautorefresh.com/images/buttons/greasy-fork/install-button.svg"></a><a href="#-如何安装"><img height=45 title="如何安装" src="https://media.chatgptautorefresh.com/images/buttons/greasy-fork/help-button.svg"></a>
 <br>
 [讨论](https://chatgptautorefresh.com/discuss) /
 [审查](https://greasyfork.chatgptautorefresh.com/feedback#post-discussion) /

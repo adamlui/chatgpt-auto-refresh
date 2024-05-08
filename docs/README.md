@@ -23,7 +23,7 @@
 
 ### Keeps ChatGPT sessions fresh via background requests to eliminate network errors + Cloudflare checks.
 
-<a href="https://greasyfork.chatgptautorefresh.com"><img height=42 src="https://media.chatgptautorefresh.com/images/buttons/greasy-fork/install-button.svg"></a><a href="-#installation"><img height=42 title="How to install" src="https://media.chatgptautorefresh.com/images/buttons/greasy-fork/help-button.svg"></a>
+<a href="https://greasyfork.chatgptautorefresh.com"><img height=45 src="https://media.chatgptautorefresh.com/images/buttons/greasy-fork/install-button.svg"></a><a href="-#installation"><img height=45 title="How to install" src="https://media.chatgptautorefresh.com/images/buttons/greasy-fork/help-button.svg"></a>
 <br>
 [Discuss](https://chatgptautorefresh.com/discuss) /
 [Review](https://greasyfork.chatgptautorefresh.com/feedback#post-discussion) /
