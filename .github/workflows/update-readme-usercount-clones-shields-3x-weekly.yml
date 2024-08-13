@@ -158,7 +158,7 @@ jobs:
         run: |
           cd ${{ github.workspace }}/adamlui/chatgpt-auto-refresh
           git config --global user.name "kudo-sync-bot"
-          git config --global user.email "auto-sync@adamlui.com"
+          git config --global user.email "auto-sync@kudoai.com"
           git add .
           git commit -n -m "${{ steps.update-shields.outputs.commit_msg }}" || true
           git push
