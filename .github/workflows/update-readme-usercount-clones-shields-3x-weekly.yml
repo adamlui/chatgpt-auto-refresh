@@ -136,10 +136,10 @@ jobs:
           if [ "$users_updated" = true ] && [ "$clones_updated" = true ] ; then
             multi_shield_types_updated=true ; fi
           commit_msg_intro="Updated "
-          [ "$users_updated" = true              ] && commit_msg+="usercount"
-          [ "$multi_shield_types_updated" = true ] && commit_msg+="/"
-          [ "$clones_updated" = true             ] && commit_msg+="clones"
-          commit_msg+=" shield counters"
+          [ "$users_updated" = true              ] && commit_msg_intro+="usercount"
+          [ "$multi_shield_types_updated" = true ] && commit_msg_intro+="/"
+          [ "$clones_updated" = true             ] && commit_msg_intro+="clones"
+          commit_msg_intro+=" shield counters"
           echo "commit_msg_intro=$commit_msg_intro" >> $GITHUB_OUTPUT # expose as output
 
       - name: Sync / to adamlui/chatgpt-apps/chatgpt-auto-refresh/
