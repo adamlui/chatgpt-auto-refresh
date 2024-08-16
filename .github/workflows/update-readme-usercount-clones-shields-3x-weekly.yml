@@ -154,7 +154,7 @@ jobs:
             ${{ github.workspace }}/adamlui/chatgpt-auto-refresh/greasemonkey/ \
             ${{ github.workspace }}/adamlui/userscripts/chatgpt/chatgpt-auto-refresh/
 
-      - name: Init commiter name/email
+      - name: Init committer name/email
         run: |
           git config --global user.name "kudo-sync-bot"
           git config --global user.email "auto-sync@kudoai.com"
