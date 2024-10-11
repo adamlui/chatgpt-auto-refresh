@@ -1,4 +1,4 @@
-name: Sync (/ to adamlui/ai-apps/chatgpt-auto-refresh/) && (/greasemonkey/ to adamlui/userscripts/chatgpt/chatgpt-auto-refresh/)
+name: Sync * to adamlui/ai-apps/chatgpt-auto-refresh/ && greasemonkey/* to adamlui/userscripts/chatgpt/chatgpt-auto-refresh/
 
 on:
   push:
