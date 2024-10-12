@@ -156,10 +156,13 @@ jobs:
             ${{ github.workspace }}/adamlui/chatgpt-auto-refresh/greasemonkey/ \
             ${{ github.workspace }}/adamlui/userscripts/chatgpt/chatgpt-auto-refresh/
 
-      - name: Init committer name/email
+      - name: Config committer
         run: |
+          gpg --batch --import <(echo "${{ secrets.GPG_PRIVATE_KEY }}")
+          git config --global commit.gpgsign true
           git config --global user.name "kudo-sync-bot"
           git config --global user.email "auto-sync@kudoai.com"
+          git config --global user.signingkey  "${{ secrets.GPG_PRIVATE_ID }}"
 
       - name: Push changes to adamlui/chatgpt-auto-refresh
         run: |
