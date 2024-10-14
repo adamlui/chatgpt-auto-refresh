@@ -2,7 +2,7 @@ name: Update usercount shield in READMEs, then sync to adamlui/ai-apps + adamlui
 
 on:
   schedule:
-    - cron: "42 5 * * 0,2,4" # every Sun/Tue/Thu @ 6:23a
+    - cron: "42 5 * * 4" # every Thu @ 6:23a
 
 jobs:
   update-usercount-shield:
