@@ -33,7 +33,6 @@ jobs:
           path: adamlui/userscripts
 
       - name: Fetch/sum user count
-        id: get-stats
         run: |
           expand_num() { # expand nums abbreviated w/ 'k' or 'm' suffix to integers
             local num=$(echo "$1" | tr '[:upper:]' '[:lower:]') # convert to lowercase
@@ -84,12 +83,12 @@ jobs:
           echo "Formatted total users: $formatted_total_users"
 
           # Expose as output for update step next
-          echo "total_users=$formatted_total_users" >> $GITHUB_OUTPUT
+          echo "total_users=$formatted_total_users" >> $GITHUB_ENV
 
       - name: Update README shields
         run: |
           cd ${{ github.workspace }}/adamlui/chatgpt-auto-refresh
-          total_users="${{ steps.get-stats.outputs.total_users }}"
+          total_users="${{ env.total_users }}"
           if [ "$total_users" == "0" ] ; then echo "Error getting total usercount"
           else # perform update
             for readme in $(find . -name "README.md") ; do
