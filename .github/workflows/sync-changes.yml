@@ -37,7 +37,6 @@ jobs:
           path: adamlui/userscripts
 
       - name: Sync docs between root & greasemonkey/
-        id: sync_docs
         run: |
           shopt -s globstar
           cd ${{ github.workspace }}/adamlui/chatgpt-auto-refresh
@@ -71,7 +70,7 @@ jobs:
           done
 
           # Store sync src for commit msg in self-push step
-          echo "sync_src=$sync_src" >> $GITHUB_OUTPUT
+          echo "sync_src=$sync_src" >> $GITHUB_ENV
 
       - name: Sync ** to adamlui/ai-apps/chatgpt-auto-refresh/
         run: |
@@ -105,7 +104,7 @@ jobs:
         run: |
           cd ${{ github.workspace }}/adamlui/chatgpt-auto-refresh
           git add .
-          git commit -n -m "$ESCAPED_MSG ↞ [auto-sync from \`${{ steps.sync_docs.outputs.sync_src }}\`]" || true
+          git commit -n -m "$ESCAPED_MSG ↞ [auto-sync from \`${{ env.sync_src }}\`]" || true
           git push
 
       - name: Push changes to adamlui/ai-apps
