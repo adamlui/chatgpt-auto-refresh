@@ -1,4 +1,4 @@
-name: Update usercount/clones shields in READMEs, sync to adamlui/ai-apps + adamlui/userscripts
+name: Update usercount/clones shields in READMEs, then sync to adamlui/ai-apps + adamlui/userscripts
 
 on:
   schedule:
@@ -144,13 +144,13 @@ jobs:
           commit_msg_intro+=" shield counters"
           echo "commit_msg_intro=$commit_msg_intro" >> $GITHUB_OUTPUT # expose as output
 
-      - name: Sync / to adamlui/ai-apps/chatgpt-auto-refresh/
+      - name: Sync ** to adamlui/ai-apps/chatgpt-auto-refresh/
         run: |
           rsync -avhr --delete --exclude={'.*','eslint*','package*json'} \
             ${{ github.workspace }}/adamlui/chatgpt-auto-refresh/ \
             ${{ github.workspace }}/adamlui/ai-apps/chatgpt-auto-refresh/
 
-      - name: Sync /greasemonkey/ to adamlui/userscripts/chatgpt/chatgpt-auto-refresh/
+      - name: Sync greasemonkey/ to adamlui/userscripts/chatgpt/chatgpt-auto-refresh/
         run: |
           rsync -avhr --delete \
             ${{ github.workspace }}/adamlui/chatgpt-auto-refresh/greasemonkey/ \

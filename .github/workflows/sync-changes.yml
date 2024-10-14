@@ -1,4 +1,4 @@
-name: Sync * to adamlui/ai-apps/chatgpt-auto-refresh/ && greasemonkey/* to adamlui/userscripts/chatgpt/chatgpt-auto-refresh/
+name: Sync ** to adamlui/ai-apps/chatgpt-auto-refresh/, then greasemonkey/ to adamlui/userscripts/chatgpt/chatgpt-auto-refresh/
 
 on:
   push:
@@ -36,7 +36,7 @@ jobs:
           repository: adamlui/userscripts
           path: adamlui/userscripts
 
-      - name: Sync docs between root & /greasemonkey
+      - name: Sync docs between root & greasemonkey/
         id: sync_docs
         run: |
           shopt -s globstar
@@ -73,13 +73,13 @@ jobs:
           # Store sync src for commit msg in self-push step
           echo "sync_src=$sync_src" >> $GITHUB_OUTPUT
 
-      - name: Sync / to adamlui/ai-apps/chatgpt-auto-refresh/
+      - name: Sync ** to adamlui/ai-apps/chatgpt-auto-refresh/
         run: |
           rsync -avhr --delete --exclude={'.*','eslint*','package*json'} \
             ${{ github.workspace }}/adamlui/chatgpt-auto-refresh/ \
             ${{ github.workspace }}/adamlui/ai-apps/chatgpt-auto-refresh/
 
-      - name: Sync /greasemonkey/ to adamlui/userscripts/chatgpt/chatgpt-auto-refresh/
+      - name: Sync greasemonkey/ to adamlui/userscripts/chatgpt/chatgpt-auto-refresh/
         run: |
           rsync -avhr --delete \
             ${{ github.workspace }}/adamlui/chatgpt-auto-refresh/greasemonkey/ \
