@@ -83,41 +83,41 @@ jobs:
           echo "Formatted total users: $formatted_total_users"
 
           # Expose as output for update step next
-          echo "total_users=$formatted_total_users" >> $GITHUB_ENV
+          echo "TOTAL_USERS=$formatted_total_users" >> $GITHUB_ENV
 
       - name: Update README shields
         run: |
           cd ${{ github.workspace }}/adamlui/chatgpt-auto-refresh
-          total_users="${{ env.total_users }}"
-          if [ "$total_users" == "0" ] ; then echo "Error getting total usercount"
+          TOTAL_USERS="${{ env.TOTAL_USERS }}"
+          if [ "$TOTAL_USERS" == "0" ] ; then echo "Error getting total usercount"
           else # perform update
             for readme in $(find . -name "README.md") ; do
               old_readme=$(<"$readme")
-              sed -i -E "s|(badge/[^-]+-)[0-9.,km+]+([^?]+\?logo=weightsandbiases)|\1$total_users\2|gI" "$readme"
+              sed -i -E "s|(badge/[^-]+-)[0-9.,km+]+([^?]+\?logo=weightsandbiases)|\1$TOTAL_USERS\2|gI" "$readme"
               new_readme=$(<"$readme")
               if [ "$old_readme" != "$new_readme" ] ; then users_updated=true ; fi
             done          
-            if [ "$users_updated" = true ] ; then echo "Usercount shields updated to $total_users"
+            if [ "$users_updated" = true ] ; then echo "Usercount shields updated to $TOTAL_USERS"
             else echo "Usercount shields already up-to-date" ; fi
           fi
-          if [ "$users_updated" = true ] ; then echo "users_updated=true" >> $GITHUB_ENV ; fi
+          if [ "$users_updated" = true ] ; then echo "USERS_UPDATED=true" >> $GITHUB_ENV ; fi
 
       - name: Sync ** to adamlui/ai-apps/chatgpt-auto-refresh/
-        if: env.users_updated == 'true'
+        if: env.USERS_UPDATED == 'true'
         run: |
           rsync -avhr --delete --exclude={'.*','eslint*','package*json'} \
             ${{ github.workspace }}/adamlui/chatgpt-auto-refresh/ \
             ${{ github.workspace }}/adamlui/ai-apps/chatgpt-auto-refresh/
 
       - name: Sync greasemonkey/ to adamlui/userscripts/chatgpt/chatgpt-auto-refresh/
-        if: env.users_updated == 'true'
+        if: env.USERS_UPDATED == 'true'
         run: |
           rsync -avhr --delete \
             ${{ github.workspace }}/adamlui/chatgpt-auto-refresh/greasemonkey/ \
             ${{ github.workspace }}/adamlui/userscripts/chatgpt/chatgpt-auto-refresh/
 
       - name: Config committer
-        if: env.users_updated == 'true'
+        if: env.USERS_UPDATED == 'true'
         run: |
           gpg --batch --import <(echo "${{ secrets.GPG_PRIVATE_KEY }}")
           git config --global commit.gpgsign true
@@ -126,7 +126,7 @@ jobs:
           git config --global user.signingkey "${{ secrets.GPG_PRIVATE_ID }}"
 
       - name: Push changes to adamlui/chatgpt-auto-refresh
-        if: env.users_updated == 'true'
+        if: env.USERS_UPDATED == 'true'
         run: |
           cd ${{ github.workspace }}/adamlui/chatgpt-auto-refresh
           git add .
@@ -134,7 +134,7 @@ jobs:
           git push
 
       - name: Push changes to adamlui/ai-apps
-        if: env.users_updated == 'true'
+        if: env.USERS_UPDATED == 'true'
         run: |
           cd ${{ github.workspace }}/adamlui/ai-apps
           git add .
@@ -142,7 +142,7 @@ jobs:
           git push
 
       - name: Push changes to adamlui/userscripts
-        if: env.users_updated == 'true'
+        if: env.USERS_UPDATED == 'true'
         run: |
           cd ${{ github.workspace }}/adamlui/userscripts
           git add .
