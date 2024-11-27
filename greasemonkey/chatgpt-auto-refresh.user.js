@@ -862,7 +862,7 @@
           + ( !env.browser.isMobile ? '.modal-buttons { margin-left: -13px !important }' : '' )
           + '* { scrollbar-width: thin }' // make FF scrollbar skinny to not crop toggle
         )
-    };
+    }
 
     // Add STARS styles
     ['wsbg', 'bsbg'].forEach(cssType => // white stars, black stars
