@@ -3,7 +3,7 @@ name: Sync ** to adamlui/ai-apps/chatgpt-auto-refresh/, then greasemonkey/ to ad
 on:
   push:
     branches: [main]
-    paths: ["**", "!.*", "!package*json", "!eslint.config*"]
+    paths: ["**", "!.*", "!package*.json", "!eslint.config*"]
 
 jobs:
   build:
@@ -74,7 +74,7 @@ jobs:
 
       - name: Sync ** to adamlui/ai-apps/chatgpt-auto-refresh/
         run: |
-          rsync -avhr --delete --exclude={'.*','eslint*','package*json'} \
+          rsync -avhr --delete --exclude={'.*','eslint*','package*.json'} \
             ${{ github.workspace }}/adamlui/chatgpt-auto-refresh/ \
             ${{ github.workspace }}/adamlui/ai-apps/chatgpt-auto-refresh/
 
