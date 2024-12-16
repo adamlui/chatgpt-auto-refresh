@@ -3,7 +3,7 @@ name: Sync ** to adamlui/ai-apps/chatgpt-auto-refresh/, then greasemonkey/ to ad
 on:
   push:
     branches: [main]
-    paths: ["**", "!.*", "!package*.json", "!eslint.config*"]
+    paths: ["**", "!.*"]
 
 jobs:
   build:
