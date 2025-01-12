@@ -10,7 +10,7 @@ import yml from 'eslint-plugin-yml'
 export default [
     { ignores: ['**/package-lock.json'] },
     {
-        files: ['**/*.js', '**/*.mjs'],
+        files: ['**/*.{js,mjs}'],
         languageOptions: {
             ecmaVersion: 'latest', sourceType: 'script',
             globals: { ...globals.browser, ...globals.greasemonkey, chatgpt: 'readonly' }
@@ -36,6 +36,7 @@ export default [
             'no-unused-vars': ['error', { 'caughtErrors': 'none' }] // allow unused named args in catch blocks
         }
     },
+    { files: ['**/*.mjs'], languageOptions: { sourceType: 'module' }},
     { files: ['**/*.json'], language: 'json/json', ...json.configs.recommended },
     {
         files: ['**/*.md'], language: 'markdown/commonmark', plugins: { markdown },
@@ -46,6 +47,5 @@ export default [
             'markdown/no-missing-label-refs': 'off' // allow missing label references
         }
     },
-    { files: ['**/*.mjs'], languageOptions: { sourceType: 'module' }},
-    { files: ['**/*.yaml, **/*.yml'], ...yml.configs['flat/standard'][1] }
+    { files: ['**/*.{yaml,yml}'], ...yml.configs['flat/standard'][1] }
 ]
