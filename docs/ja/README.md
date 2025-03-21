@@ -196,6 +196,27 @@ ChatGPT 自動更新 は、[ScriptCat](https://docs.scriptcat.org)、[Violentmon
 
 <img height=6px width="100%" src="https://assets.chatgptautorefresh.com/images/separators/gradient-aqua.png">
 
+<div id="sponsors" align="center">
+<br>
+
+### サポート対象:
+
+<div id="warp">
+    <br><br>
+    <a href="https://www.warp.dev/chatgptjs" target="_blank">
+        <img width="600" src="https://assets.chatgptjs.org/images/banners/warp/banner-1500x500.png?v=476e837">
+    </a>
+    <h3><a href="https://www.warp.dev/chatgptjs" target="_blank">
+        ターミナルで使える AI 開発ツール Warp</a></h3>
+    <i><a href="https://www.warp.dev/chatgptjs" target="_blank">
+        MacOS、Linux、Windows で利用可能</a></i>
+</div>
+<br><br>
+
+</div>
+
+<img height=6px width="100%" src="https://assets.chatgptautorefresh.com/images/separators/gradient-aqua.png">
+
 ## 🤖 その他の ChatGPT アプリ
 
 さらに多くの素晴らしい ChatGPT アプリについては、https://github.com/adamlui/ai-web-extensions をご覧ください。
