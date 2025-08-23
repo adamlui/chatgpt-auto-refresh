@@ -1,0 +1,27 @@
+name: Sync changes to GitLab
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    if: (github.repository == 'adamlui/chatgpt-auto-refresh')
+    runs-on: ubuntu-latest
+    env:
+      TZ: PST8PDT
+
+    steps:
+
+      - name: Checkout adamlui/chatgpt-auto-refresh
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Push changes to gitlab.com/adamlui/chatgpt-auto-refresh
+        run: |
+          git push --force -o ci.skip \
+            https://oauth2:${{ secrets.GITLAB_SYNC_PAT }}@gitlab.com/adamlui/chatgpt-auto-refresh.git main
